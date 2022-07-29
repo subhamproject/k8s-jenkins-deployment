@@ -11,12 +11,6 @@ pipeline{
                                 sh './image_push.sh'
                         }
                 }
-        post {
-                always {
-                        cleanWs()
-                        echo "done"
-                }
-        }
 
 }
 }

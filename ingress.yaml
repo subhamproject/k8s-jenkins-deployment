@@ -29,6 +29,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: ${DEPLOY_NAME}-service
+                name: blue-green
                 port:
                   name: use-annotation

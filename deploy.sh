@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-set -x 
 TAG=${BRANCH_NAME}-$(python version.py)
 REGION=$(aws ec2 describe-availability-zones --output text --query 'AvailabilityZones[0].[RegionName]')
 REPO=${GIT_URL##*/}
@@ -12,6 +11,8 @@ export KUBECONFIG=/tmp/kubeconfig && CLUSTER_ARN=$(aws eks --region $REGION desc
 
 if [[ $(kubectl config current-context) != "$CLUSTER_ARN" ]];then
 export KUBECONFIG=/tmp/kubeconfig && aws eks update-kubeconfig --name $CLUSTER --region $REGION
+else
+echo "Skipping updating kube config - already exist"
 fi
 
 REGISTRY="$(aws sts get-caller-identity --query 'Account' --output text).dkr.ecr.${REGION}.amazonaws.com"

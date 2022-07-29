@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
+set -x
 
 [ $(sudo rpm -qa|grep jq|wc -l) -eq 0 ] && sudo yum install jq -y
 
-TAG=${BRANCH_NAME}-$(python ../version.py) 
+TAG=${BRANCH_NAME}-$(python version.py) 
 LATEST_TAG=${BRANCH_NAME}-latest
 REGION=$(aws ec2 describe-availability-zones --output text --query 'AvailabilityZones[0].[RegionName]')
 REPO=${GIT_URL##*/}

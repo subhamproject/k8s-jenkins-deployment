@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -x
 
 [ $(sudo rpm -qa|grep jq|wc -l) -eq 0 ] && sudo yum install jq -y
 

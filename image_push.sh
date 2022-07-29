@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-TAG=${BRANCH_NAME}-$(version.py)
+TAG=${BRANCH_NAME}-$(python $dirname $0/version.py)
 LATEST_TAG=${BRANCH_NAME}-latest
 REGION=$(aws ec2 describe-availability-zones --output text --query 'AvailabilityZones[0].[RegionName]')
 REPO=${GIT_URL##*/}

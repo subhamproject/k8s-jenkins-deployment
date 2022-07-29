@@ -8,7 +8,7 @@ REPO=${REPO%.git}
 
 CLUSTER=$(aws eks list-clusters --region $REGION --query clusters[0] --output text)
 
-CLUSTER_ARN=$(aws eks --region $REGION describe-cluster --name $CLUSTER|jq -r '.cluster.arn')
+export KUBECONFIG=/tmp/kubeconfig && CLUSTER_ARN=$(aws eks --region $REGION describe-cluster --name $CLUSTER|jq -r '.cluster.arn')
 
 if [[ $(kubectl config current-context) != "$CLUSTER_ARN" ]];then
 export KUBECONFIG=/tmp/kubeconfig && aws eks update-kubeconfig --name $CLUSTER --region $REGION

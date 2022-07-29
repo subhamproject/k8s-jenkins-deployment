@@ -3,12 +3,12 @@ pipeline{
         stages {
                 stage('Build') {
                         steps {
-                                sh 'sudo docker build -t patelsaheb/hellonodejs:eks .'
+                                sh './image_build.sh'
                         }
                 }
              stage('Push') {
                         steps {
-                                sh 'sudo docker push patelsaheb/hellonodejs:eks'
+                                sh './image_push.sh'
                         }
                 }
         post {

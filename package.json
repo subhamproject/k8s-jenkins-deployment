@@ -1,6 +1,6 @@
 {
   "name": "K8s Demo NodeJS",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "description": "Node.js on Docker",
   "author": "devops4uall@gmail.com",

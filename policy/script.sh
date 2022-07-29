@@ -53,6 +53,15 @@ aws ec2 associate-iam-instance-profile \
   --instance-id i-0b6a7addaeaac9916 \
   --iam-instance-profile Name=Jenkins \
 
+
+
+eksctl create iamidentitymapping \
+  --cluster eks-cluster  \
+  --arn arn:aws:iam::707015264015:role/full-eks-access-role \
+  --username jenkins \
+  --group devops \
+  --group system:masters
+
 #curl -o aws-auth-cm.yaml https://amazon-eks.s3-us-west-2.amazonaws.com/cloudformation/2019-02-11/aws-auth-cm.yaml
 
 

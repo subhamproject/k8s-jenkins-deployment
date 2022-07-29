@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#https://blog.omerh.me/post/2019/05/28/accessing-eks-from-ec2-instance-profile/
 
 ACCOUNT_ID=$(aws sts get-caller-identity|jq -r '.Account')
 

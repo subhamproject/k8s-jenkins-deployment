@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+set -x 
 TAG=${BRANCH_NAME}-$(python version.py)
 REGION=$(aws ec2 describe-availability-zones --output text --query 'AvailabilityZones[0].[RegionName]')
 REPO=${GIT_URL##*/}

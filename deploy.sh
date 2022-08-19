@@ -20,7 +20,14 @@ REGISTRY="$(aws sts get-caller-identity --query 'Account' --output text).dkr.ecr
 export IMAGE_NAME="${REGISTRY}/${REPO}:${TAG}"
 export DEPLOY_NAME="$(echo $REPO|cut -d'-' -f2-)"
 
+
+if kubectl get deploy $DEPLOY_NAME -o jsonpath="{..image}"  &> /dev/null;then
 CURRENT_IMAGE=$(kubectl get deploy $DEPLOY_NAME -o jsonpath="{..image}" |xargs)
+else
+echo "No such Deployment with name $DEPLOY_NAME found - creating now"
+fi
+
+
 if [[ $CURRENT_IMAGE != $IMAGE_NAME ]];then
 envsubst < deployment.yaml |kubectl apply -f -
 fi
